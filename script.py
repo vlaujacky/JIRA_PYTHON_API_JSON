@@ -95,4 +95,5 @@ if __name__ == "__main__":
 
     # Optional : Make transition and change status of issue
     transition_name = arguments.transition
-    jira_connect.transition_issue(issue_key_if_created, transition_name)
+    if transition_name is not None:
+        jira_connect.transition_issue(issue_key_if_created, transition_name)
