@@ -15,6 +15,7 @@ def argParser():
     parser.add_argument('--file',action='store',dest='json_file',help='Path of JIRA issue in JSON format')
     parser.add_argument('--name',action='store',dest='sum_name',
                         help='Value of the summary fields (The name of your issue)')
+    parser.add_argument('--transition',action='store',dest='transition',help='Change status of an issue')
 
     return parser.parse_args()
 
@@ -91,3 +92,7 @@ if __name__ == "__main__":
         print("ISSUE ",issue_key_if_created,"WAS DELETED")
     else:
         print("Error : Bad args / Issue already created in JIRA ")
+
+    # Optional : Make transition and change status of issue
+    transition_name = arguments.transition
+    jira_connect.transition_issue(issue_key_if_created, transition_name)
