@@ -84,6 +84,8 @@ if __name__ == "__main__":
     if action == "CREATE" and len(issue_key_if_created) == 0:
         jira_connect.create_issue(dict_new_keys)
         print("ISSUE WAS CREATED")
+        issue_key_if_created = is_created(jira_connect,JIRA_PROJECT_NAME,issue_name)
+
     elif action == "UPDATE" and len(issue_key_if_created) != 0:
         jira_connect.update_issue(str(issue_key_if_created), dict_new_keys)
         print("ISSUE",issue_key_if_created,"WAS UPDATED")
