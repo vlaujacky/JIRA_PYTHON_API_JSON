@@ -16,34 +16,18 @@ def argParser():
     parser.add_argument('--name',action='store',dest='sum_name',
                         help='Value of the summary fields (The name of your issue)')
     parser.add_argument('--transition',action='store',dest='transition',help='Change status of an issue')
+    parser.add_argument('--attachment',action='store',dest='attachment',help='Send an attachment to an issue')
 
     return parser.parse_args()
 
 
 # Load the JSON file with new issue values and convert it to Python Dict
 def load_json2dict(json_file):
-    f = open(json_file)
-    return json.load(f)
-    f.close()
-
-
-# Check if the issue is created (search with the 'summary' value)
-def is_created(jira, project_name, issue_name):
-    list_issue = jira.search_issue_summary(project_name, issue_name)
-    if len(list_issue) == 1:
-        print('Issue is existing, possible command : UPDATE, DELETE for issue ', list_issue)
-        return list_issue[0]
-    elif not list_issue:
-        print('No issue existing, possible command : CREATE')
-        return list_issue
-    else:
-        print('[ WARNING ] : SIMILAR ISSUE SUMMARY')
-        print(len(list_issue))
-        return exit(1)
+    with open(json_file,"r") as f:
+        return json.load(f)
 
 
 if __name__ == "__main__":
-
     #### VARIABLES #####
     JIRA_URL = "https://myDomain.atlassian.net/"
     JIRA_MAIL = "toto@mail.com"
@@ -78,23 +62,30 @@ if __name__ == "__main__":
         issue_name = arguments.sum_name
 
     # Check if the issue already exist, search the "summary" value in Project
-    issue_key_if_created = is_created(jira_connect,JIRA_PROJECT_NAME, issue_name)
+    issue_key_if_created = jira_connect.is_created(JIRA_PROJECT_NAME,issue_name)
 
     # Check if issue exist or not, and use the action gave by the user
     if action == "CREATE" and len(issue_key_if_created) == 0:
-        jira_connect.create_issue(dict_new_keys)
+        issue_key_if_created = jira_connect.create_issue(dict_new_keys)
         print("ISSUE WAS CREATED")
-        issue_key_if_created = is_created(jira_connect,JIRA_PROJECT_NAME,issue_name)
+
     elif action == "UPDATE" and len(issue_key_if_created) != 0:
-        jira_connect.update_issue(str(issue_key_if_created), dict_new_keys)
+        jira_connect.update_issue(str(issue_key_if_created),dict_new_keys)
         print("ISSUE",issue_key_if_created,"WAS UPDATED")
+
     elif action == "DELETE" and len(issue_key_if_created) != 0:
         jira_connect.delete_issue(issue_key_if_created)
         print("ISSUE ",issue_key_if_created,"WAS DELETED")
+
     else:
-        print("Error : Bad args / Issue already created in JIRA ")
+        print("ERROR : Bad args / Issue already created in JIRA ")
 
     # Optional : Make transition and change status of issue
     transition_name = arguments.transition
     if transition_name is not None:
-        jira_connect.transition_issue(issue_key_if_created, transition_name)
+        jira_connect.transition_issue(issue_key_if_created,transition_name)
+
+    attachment_name = arguments.attachment
+    if attachment_name is not None:
+        jira_connect.add_attachment(issue_key_if_created, attachment_name)
+
