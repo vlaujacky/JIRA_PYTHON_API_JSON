@@ -33,7 +33,6 @@ So, I had to automatize the creation/modification/deletion of issues.
 - Library : Jira
 
 ## Features
-List the ready features here:
 - Create / Modify / Delete Issue
 - Transition an issue
 - Send an attachment to an issue
