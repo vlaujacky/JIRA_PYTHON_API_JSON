@@ -20,15 +20,15 @@
 The problem with Jira usage is manual and boring due to the web interface.
 Especially when you have a lot a of issues to treat with.
 
-A lack of project about Jira automatization and they didn't corresponds to my usage (too simple, overkill,...).
-Also, I haven't seen any project about Jira automatisation which used JSON to manipulate issue.
+A lack of project about Jira automatization and they didn't correspond to my usage (too simple, overkill,...).
+Also, I haven't seen any project about Jira automatization which used JSON to manipulate issue.
 
 ### What is the purpose of this project ? 
 My project intends to automatize Jira issues manipulation with JSON templates.
 I wanted to implement the most useful features and made it simplest as possible.
 
 ### Why did I undertake it ? 
-For my IT school project, I had to do a CMDB for a DRP (Disastery Recovery Protocol) and I choose to use Jira.
+For my IT school project, I had to do a CMDB for a DRP (Disaster Recovery Protocol) and I choose to use Jira.
 So, I had to automatize the creation/modification/deletion of issues. 
 
 ## Technologies Used
@@ -47,7 +47,7 @@ You need to install Jira library :
 
 You need to setup script variables to allow it to connect to your JIRA Project.
 
-Edit these line in `script.py` with your JIRA Project Informations/Credentials: 
+Edit these lines in `script.py` with your JIRA Project Informations/Credentials: 
 
     JIRA_URL = "https://myDomain.atlassian.net/"
     JIRA_MAIL = "toto@mail.com"
