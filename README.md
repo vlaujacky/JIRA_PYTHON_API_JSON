@@ -46,7 +46,7 @@ You need to install Jira library :
 `pip install jira`
 
 You need to setup script variables to allow it to connect to your JIRA Project.
-Edit these line in `script.py with JIRA Project Information/Credentials: 
+Edit these line in `script.py` with your JIRA Project Informations/Credentials: 
 
     JIRA_URL = "https://myDomain.atlassian.net/"
     JIRA_MAIL = "toto@mail.com"
