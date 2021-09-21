@@ -1,4 +1,5 @@
 [![Python 3.9.5](https://img.shields.io/badge/python-3.9.5-blue.svg)](https://www.python.org/downloads/release/python-395/)
+[![Apache License](https://img.shields.io/badge/License-Apache-red.svg)](https://www.apache.org/licenses/LICENSE-2.0.txt)
 
 # Python Jira API : From JSON to Issue
 > I've made this project to manipulate Jira issues with JSON templates.
@@ -16,7 +17,7 @@
 
 ## General Information
 ### What problem this project intend to solve  ? 
-The problem with Jira usage is that is to static. Configure issues with the web interface is boring.
+The problem with Jira usage is manual and boring due to the web interface.
 Especially when you have a lot a of issues to treat with.
 
 A lack of project about Jira automatization and they didn't corresponds to my usage (too simple, overkill,...).
