@@ -32,7 +32,7 @@ For my IT school project, I had to do a CMDB for a DRP (Disaster Recovery Protoc
 So, I had to automatize the creation/modification/deletion of issues. 
 
 ## Technologies Used
-- Python - Version 3.8
+- Python - Version 3
 - Library : Jira
 
 ## Features
